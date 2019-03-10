@@ -28,6 +28,9 @@ namespace PdfGlue
                 Application.Run(new Form1());
 #endif
 
+            CefFiles.DownloadCefForPlatform(@"D:\inetpub\mycef");
+
+
             // CefFiles.Cleanup(); return;
 
             // Load CEF. This checks for the correct CEF version.
