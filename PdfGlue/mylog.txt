@@ -1,0 +1,72 @@
+
+export LD_LIBRARY_PATH="/root/github/CefGlue_NetStandard/PdfGlue/bin/Debug/netcoreapp2.2/"
+dotnet run PdfGlue 2>> mylog.txt
+
+
+/root/github/CefGlue_NetStandard/PdfGlue/GPUCache
+/root/github/CefGlue_NetStandard/PdfGlue/blob_storage/2a12a0e5-7987-45f8-a580-5733705ea369
+
+
+
+Unknown option: --type=zygote
+Unknown option: --no-sandbox
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --type=gpu-process
+Unknown option: --field-trial-handle=7113648197633947303,10368492860890258165,131072
+Unknown option: --no-sandbox
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --gpu-preferences=KAAAAAAAAACAAACAAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --service-request-channel-token=6055487526564355125
+Unknown option: --type=gpu-process
+Unknown option: --field-trial-handle=7113648197633947303,10368492860890258165,131072
+Unknown option: --no-sandbox
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --gpu-preferences=KAAAAAAAAACAAACAAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --service-request-channel-token=14484122913343499870
+Unknown option: --type=gpu-process
+Unknown option: --field-trial-handle=7113648197633947303,10368492860890258165,131072
+Unknown option: --no-sandbox
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --gpu-preferences=KAAAAAAAAACAAACAAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --service-request-channel-token=3632334509503127471
+Unknown option: --type=gpu-process
+Unknown option: --field-trial-handle=7113648197633947303,10368492860890258165,131072
+Unknown option: --no-sandbox
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --gpu-preferences=KAAAAAAAAACAAACAAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA
+Unknown option: --use-gl=swiftshader-webgl
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --service-request-channel-token=16437557754291708596
+Unknown option: --type=gpu-process
+Unknown option: --field-trial-handle=7113648197633947303,10368492860890258165,131072
+Unknown option: --no-sandbox
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --gpu-preferences=KAAAAAAAAACAAACAAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA
+Unknown option: --use-gl=swiftshader-webgl
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --service-request-channel-token=9494227749138407818
+Unknown option: --type=gpu-process
+Unknown option: --field-trial-handle=7113648197633947303,10368492860890258165,131072
+Unknown option: --no-sandbox
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --gpu-preferences=KAAAAAAAAACAAACAAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA
+Unknown option: --use-gl=swiftshader-webgl
+Unknown option: --log-file=/usr/share/dotnet/debug.log
+Unknown option: --lang=en-US
+Unknown option: --service-request-channel-token=13953398194786513312
+[0310/135945.970487:ERROR:browser_gpu_channel_host_factory.cc(139)] Failed to launch GPU process.

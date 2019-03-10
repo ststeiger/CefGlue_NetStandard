@@ -49,6 +49,7 @@ namespace PdfGlue
             };            
 
             // Start the browser process (a child process).
+            // runtime files to /usr/share/dotnet
             CefRuntime.Initialize(cefMainArgs, cefSettings, cefApp, System.IntPtr.Zero);
             
 
