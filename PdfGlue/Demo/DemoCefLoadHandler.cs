@@ -10,6 +10,7 @@ namespace PdfGlue
         : CefLoadHandler
     {
 
+
         protected override void OnLoadStart(CefBrowser browser, CefFrame frame, CefTransitionType transitionType)
         {
             // base.OnLoadStart(browser, frame, transitionType);
@@ -19,9 +20,9 @@ namespace PdfGlue
             if (frame.IsMain)
             {
                 System.Console.WriteLine("START: {0}", browser.GetMainFrame().Url);
-            }
+            } // End if (frame.IsMain) 
 
-        }
+        } // End Sub OnLoadStart 
 
 
         protected override void OnLoadEnd(CefBrowser browser, CefFrame frame, int httpStatusCode)
@@ -29,8 +30,9 @@ namespace PdfGlue
             if (frame.IsMain)
             {
                 System.Console.WriteLine("END: {0}, {1}", browser.GetMainFrame().Url, httpStatusCode);
-            }
-        }
+            } // End if (frame.IsMain) 
+
+        } // End Sub OnLoadEnd 
 
 
     } // End Class DemoCefLoadHandler 

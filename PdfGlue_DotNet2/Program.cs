@@ -2,7 +2,6 @@
 using Xilium.CefGlue;
 
 
-// namespace PdfGlue_DotNet2
 namespace PdfGlue
 {
 
@@ -17,22 +16,22 @@ namespace PdfGlue
     static class Program
     {
 
+
         // https://www.joelverhagen.com/blog/2013/12/headless-chromium-in-c-with-cefglue/
         // http://opensource.spotify.com/cefbuilds/index.html
-        // Copy release and resources
         [System.STAThread]
         internal static void Main(string[] args)
         {
 #if false
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+	            Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Form1());
 #endif
 
+            // CefFiles.Cleanup(); return;
 
             // Load CEF. This checks for the correct CEF version.
             CefRuntime.Load();
-
 
             // Start the secondary CEF process.
             CefMainArgs cefMainArgs = new CefMainArgs(new string[0]);
@@ -62,6 +61,7 @@ namespace PdfGlue
             };
 
             // Start the browser process (a child process).
+            // runtime files to /usr/share/dotnet
             CefRuntime.Initialize(cefMainArgs, cefSettings, cefApp, System.IntPtr.Zero);
 
 
@@ -92,9 +92,6 @@ namespace PdfGlue
                 cefClient,
                 cefBrowserSettings,
                 "http://www.reddit.com/");
-
-
-
 
 
             // Hang, to let the browser to do its work.

@@ -16,13 +16,13 @@ namespace PdfGlue
         {
             _windowWidth = windowWidth;
             _windowHeight = windowHeight;
-        }
-
+        } // End Constructor 
+        
 
         protected override bool GetRootScreenRect(CefBrowser browser, ref CefRectangle rect)
         {
             return GetViewRectImpl(browser, ref rect);
-        }
+        } // End Function GetRootScreenRect 
 
 
         protected override bool GetScreenPoint(CefBrowser browser, int viewX, int viewY, ref int screenX, ref int screenY)
@@ -30,7 +30,7 @@ namespace PdfGlue
             screenX = viewX;
             screenY = viewY;
             return true;
-        }
+        } // End Function GetScreenPoint 
 
 
         protected bool GetViewRectImpl(CefBrowser browser, ref CefRectangle rect)
@@ -41,7 +41,7 @@ namespace PdfGlue
             rect.Height = _windowHeight;
 
             return true;
-        }
+        } // End Function GetViewRectImpl 
 
 
         protected override void GetViewRect(CefBrowser browser, out CefRectangle rect)
@@ -50,35 +50,16 @@ namespace PdfGlue
             GetViewRectImpl(browser, ref rect);
 
             // return true;
-        }
+        } // End Sub GetViewRect 
 
 
         protected override bool GetScreenInfo(CefBrowser browser, CefScreenInfo screenInfo)
         {
             return false;
-        }
+        } // End Function GetScreenInfo 
 
-
-        class MyPrintCallback 
-            : CefPdfPrintCallback
-        {
-            protected override void OnPdfPrintFinished(string path, bool ok)
-            {
-                System.Console.WriteLine("Printing finished...");
-                // throw new System.NotImplementedException();
-            }
-        }
-
-
-
-        public int CmToMicrons(double cm)
-        {
-            int microns = (int)System.Math.Ceiling((cm * 10 * 1000));
-            return microns;
-        }
 
         bool isPainting = false;
-
 
         protected override void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects
             , System.IntPtr buffer, int width, int height)
@@ -92,12 +73,12 @@ namespace PdfGlue
             using (System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(width, height, width * 4, System.Drawing.Imaging.PixelFormat.Format32bppRgb, buffer))
             {
                 bitmap.Save(@"LastOnPaint.png", System.Drawing.Imaging.ImageFormat.Png);
-            }
+            } // End Using bitmap 
 
 
-            CefPdfPrintSettings ps = new CefPdfPrintSettings();
-            ps.PageWidth = CmToMicrons(21);
-            ps.PageHeight = CmToMicrons(29.7);
+            // CefPdfPrintSettings ps = new CefPdfPrintSettings();
+            // ps.PageWidth = CmToMicrons(21);
+            // ps.PageHeight = CmToMicrons(29.7);
 
             // A0
             // ps.PageWidth = CmToMicrons(84.1);
@@ -110,57 +91,48 @@ namespace PdfGlue
 
 
 
-            ps.Landscape = false;
-            ps.MarginLeft = 0;
-            ps.MarginTop = 0;
-            ps.MarginRight = 0;
-            ps.MarginBottom = 0;
-            ps.BackgroundsEnabled = true;
-            ps.SelectionOnly = false;
+            //ps.Landscape = false;
+            //ps.MarginLeft = 0;
+            //ps.MarginTop = 0;
+            //ps.MarginRight = 0;
+            //ps.MarginBottom = 0;
+            //ps.BackgroundsEnabled = true;
+            //ps.SelectionOnly = false;
 
+            CefPdfPrintSettings ps = new PageSize(PageSize_t.A4).PrintSettings;
 
-            browser.GetHost().PrintToPdf("AAA.pdf", ps, new MyPrintCallback());
+            browser.GetHost().PrintToPdf("AAA.pdf", ps, new PdfPrintCallback());
             // browser.GetHost().CloseBrowser();
             // browser.Dispose(); // We have the image - stop re-rendering
-        }
+        } // End Sub OnPaint 
 
+
+
+
+        protected override CefAccessibilityHandler GetAccessibilityHandler()
+        { return null; } // throw new NotImplementedException();
+        
 
         protected override void OnPopupSize(CefBrowser browser, CefRectangle rect)
-        {
-        }
+        { }
 
 
         protected override void OnCursorChange(CefBrowser browser,
             System.IntPtr cursorHandle, CefCursorType type, CefCursorInfo customCursorInfo)
-        {
-            // throw new NotImplementedException();
-        }
+        { } // throw new NotImplementedException();
 
 
         protected override void OnScrollOffsetChanged(CefBrowser browser, double x, double y)
-        {
-            // throw new NotImplementedException();
-        }
-
-
-        protected override CefAccessibilityHandler GetAccessibilityHandler()
-        {
-            // throw new NotImplementedException();
-            return null;
-        }
+        { } // throw new NotImplementedException();
 
 
         protected override void OnAcceleratedPaint(CefBrowser browser, CefPaintElementType type,
             CefRectangle[] dirtyRects, System.IntPtr sharedHandle)
-        {
-            // throw new NotImplementedException();
-        }
+        { } // throw new NotImplementedException();
 
 
         protected override void OnImeCompositionRangeChanged(CefBrowser browser, CefRange selectedRange, CefRectangle[] characterBounds)
-        {
-            // throw new NotImplementedException();
-        }
+        { } // throw new NotImplementedException();
 
 
     } // End Class DemoCefRenderHandler 

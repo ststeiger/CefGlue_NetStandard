@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\PdfGlue\CefFiles.cs">
+      <Link>CefFiles.cs</Link>
+    </Compile>
     <Compile Include="..\PdfGlue\Demo\DemoCefApp.cs">
       <Link>Demo\DemoCefApp.cs</Link>
     </Compile>
@@ -54,6 +57,12 @@
     </Compile>
     <Compile Include="..\PdfGlue\Demo\DemoCefRenderHandler.cs">
       <Link>Demo\DemoCefRenderHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\PdfGlue\Demo\PageSize.cs">
+      <Link>Demo\PageSize.cs</Link>
+    </Compile>
+    <Compile Include="..\PdfGlue\Demo\PdfPrintCallback.cs">
+      <Link>Demo\PdfPrintCallback.cs</Link>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
