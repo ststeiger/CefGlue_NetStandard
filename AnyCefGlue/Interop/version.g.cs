@@ -7,8 +7,8 @@ namespace Xilium.CefGlue.Interop
     {
         public const string CEF_API_HASH_PLATFORM_WIN = "864498db9f12dd977766dc74abc56f198b39e2ce";
         public const string CEF_API_HASH_PLATFORM_MACOSX = "";
-        public const string CEF_API_HASH_PLATFORM_LINUX = "";
-
+        public const string CEF_API_HASH_PLATFORM_LINUX = "a6fa42b9e296d27d524fc561060368e0209cef8b";
+        
         public const string CEF_VERSION = "3.3578.1869";
 
 

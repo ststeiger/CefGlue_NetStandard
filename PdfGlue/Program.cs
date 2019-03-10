@@ -24,7 +24,6 @@ namespace PdfGlue
             // Load CEF. This checks for the correct CEF version.
             CefRuntime.Load();
             
-
             // Start the secondary CEF process.
             CefMainArgs cefMainArgs = new CefMainArgs(new string[0]);
             DemoCefApp cefApp = new DemoCefApp();
