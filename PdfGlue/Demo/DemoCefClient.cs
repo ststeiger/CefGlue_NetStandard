@@ -18,6 +18,8 @@ namespace PdfGlue
             _loadHandler = new DemoCefLoadHandler();
         } // End Constructor 
 
+        
+
 
         protected override CefRenderHandler GetRenderHandler()
         {

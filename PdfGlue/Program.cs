@@ -19,6 +19,7 @@ namespace PdfGlue
 
         // https://www.joelverhagen.com/blog/2013/12/headless-chromium-in-c-with-cefglue/
         // http://opensource.spotify.com/cefbuilds/index.html
+        // https://github.com/spajak/cef-pdf
         [System.STAThread]
         internal static void Main(string[] args)
         {
@@ -28,7 +29,7 @@ namespace PdfGlue
                 Application.Run(new Form1());
 #endif
 
-            CefFiles.DownloadCefForPlatform(@"D:\inetpub\mycef");
+            // CefFiles.DownloadCefForPlatform(@"D:\inetpub\mycef");
 
 
             // CefFiles.Cleanup(); return;
@@ -51,13 +52,14 @@ namespace PdfGlue
             // Settings for all of CEF (e.g. process management and control).
             CefSettings cefSettings = new CefSettings
             {
-                //  From v68 SingleProcess is no longer supported and it has to be published. 
+                // From v68 SingleProcess is no longer supported and it has to be published. 
                 // So debugging may be a tough situation in that regard unless your had a subprocess. 
                 // SingleProcess = false, // https://github.com/chromelyapps/Chromely/issues/74 
-                MultiThreadedMessageLoop = true
+                 MultiThreadedMessageLoop = true
                 ,NoSandbox=true 
                 ,WindowlessRenderingEnabled = true
                 ,IgnoreCertificateErrors= true
+                ,CommandLineArgsDisabled= true
             };            
 
             // Start the browser process (a child process).
@@ -72,14 +74,21 @@ namespace PdfGlue
             cefWindowInfo.SetAsWindowless(System.IntPtr.Zero, true);
             
 
-
             // Settings for the browser window itself (e.g. enable JavaScript?).
             CefBrowserSettings cefBrowserSettings = new CefBrowserSettings();
 
             
             cefBrowserSettings.WebGL = CefState.Disabled;
-            cefBrowserSettings.WindowlessFrameRate = 30;
+            cefBrowserSettings.WindowlessFrameRate = 1;
+            cefBrowserSettings.Plugins = CefState.Disabled;
+            cefBrowserSettings.DefaultEncoding = System.Text.Encoding.UTF8.WebName;
+            cefBrowserSettings.JavaScriptCloseWindows = CefState.Disabled;
+            cefBrowserSettings.JavaScriptAccessClipboard = CefState.Disabled;
+            cefBrowserSettings.JavaScriptDomPaste = CefState.Disabled;
+            cefBrowserSettings.JavaScript = CefState.Enabled;
 
+
+            // CefRuntime.RunMessageLoop();
 
 
             // Initialize some the cust interactions with the browser process.

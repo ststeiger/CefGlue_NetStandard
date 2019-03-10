@@ -28,6 +28,7 @@ namespace PdfGlue
         public bool Landscape;
 
 
+        // https://www.papersizes.org/a-paper-sizes-tstc.htm
         protected void SetPageSize(PageSize_t size)
         {
             if (size == PageSize_t.A0)
