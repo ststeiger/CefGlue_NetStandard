@@ -25,10 +25,34 @@ namespace PdfGlue
         } // End Sub OnLoadStart 
 
 
+        // createBrowser("data:text/html,test", ...)
+        // Don't use loadString. Either pass to createbrowser or loadurl.
+        public class foo : CefDownloadImageCallback
+        {
+            protected override void OnDownloadImageFinished(string imageUrl, int httpStatusCode, CefImage image)
+            {
+                int width;
+                int height;
+                CefBinaryValue cbv = image.GetAsPng(1, true, out width, out height);
+                byte[] ba = cbv.ToArray();
+            }
+        }
+
+
         protected override void OnLoadEnd(CefBrowser browser, CefFrame frame, int httpStatusCode)
         {
             if (frame.IsMain)
             {
+                // https://bitbucket.org/chromiumembedded/cef/wiki/GeneralUsage#markdown-header-off-screen-rendering
+                // https://gist.github.com/jankurianski/e0ac2d1006f3a42216be
+                // browser.GetMainFrame().LoadString("content", "http://dummy.com");
+
+                // browser.GetMainFrame().GetSource()
+                // browser.GetMainFrame().GetText();
+
+
+                // browser.GetHost().HasDevTools
+                // browser.GetHost().DownloadImage("imageUrl", false, 1000, true, new foo());
                 System.Console.WriteLine("END: {0}, {1}", browser.GetMainFrame().Url, httpStatusCode);
             } // End if (frame.IsMain) 
 

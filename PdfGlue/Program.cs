@@ -20,6 +20,9 @@ namespace PdfGlue
         // https://www.joelverhagen.com/blog/2013/12/headless-chromium-in-c-with-cefglue/
         // http://opensource.spotify.com/cefbuilds/index.html
         // https://github.com/spajak/cef-pdf
+        // https://bitbucket.org/chromiumembedded/cef/wiki/GeneralUsage#markdown-header-off-screen-rendering
+        // http://blog.icnet.eu/loadhtml-in-cefsharp3/
+
         [System.STAThread]
         internal static void Main(string[] args)
         {
@@ -29,13 +32,42 @@ namespace PdfGlue
                 Application.Run(new Form1());
 #endif
 
+            // New idea: 
+
+            // Chrome v59 now supports headless mode which has some interesting flags. 
+            // Running with --screenshot will produce a file named screenshot.png in the current working directory:
+
+            // cd C:\Program Files(x86)\Google\Chrome\Application
+            // chrome --headless --screenshot https://www.chromestatus.com/
+
+            // # Size of a standard letterhead.
+            // chrome --headless --screenshot --window-size=1280,1696 https://www.chromestatus.com/
+
+            // # Nexus 5x
+            // chrome --headless --screenshot --window-size=412,732 https://www.chromestatus.com/
+
+
+            // https://developers.google.com/web/updates/2017/04/headless-chrome
+            // The --dump-dom flag prints document.body.innerHTML to stdout:
+            // chrome --headless --disable-gpu --dump-dom https://www.chromestatus.com/
+
+            // The --print-to-pdf flag creates a PDF of the page:
+            // chrome --headless --disable-gpu --print-to-pdf https://www.chromestatus.com/
+
+            // chrome --headless --disable-gpu --repl --crash-dumps-dir=./tmp https://www.chromestatus.com/
+            // [0608 / 112805.245285:INFO: headless_shell.cc(278)] Type a Javascript expression to evaluate or "quit" to exit.
+            // >>> location.href
+            // { "result":{ "type":"string","value":"https://www.chromestatus.com/features"} }
+            // >>> quit
+
+
             // CefFiles.DownloadCefForPlatform(@"D:\inetpub\mycef");
 
 
             // CefFiles.Cleanup(); return;
 
             // Load CEF. This checks for the correct CEF version.
-            
+
             System.Console.WriteLine("Loading CEF");
             CefRuntime.Load();
             System.Console.WriteLine("CEF loaded");
@@ -49,7 +81,7 @@ namespace PdfGlue
             DemoCefApp cefApp = new DemoCefApp();
             System.Console.WriteLine("New DemoCefApp completed");
 
-
+            
             
             System.Console.WriteLine("Before executing process");
             // This is where the code path divereges for child processes.
@@ -74,6 +106,8 @@ namespace PdfGlue
                 ,WindowlessRenderingEnabled = true
                 ,IgnoreCertificateErrors= true
                 ,CommandLineArgsDisabled= true
+                ,LogSeverity = CefLogSeverity.Verbose
+                , 
             };            
             System.Console.WriteLine("After new CEF-settings");
             
@@ -97,6 +131,7 @@ namespace PdfGlue
             cefWindowInfo.SetAsWindowless(System.IntPtr.Zero, true);
             
 
+
             System.Console.WriteLine("New CefBrowserSettings");
             // Settings for the browser window itself (e.g. enable JavaScript?).
             CefBrowserSettings cefBrowserSettings = new CefBrowserSettings();
@@ -112,11 +147,12 @@ namespace PdfGlue
             cefBrowserSettings.JavaScriptAccessClipboard = CefState.Disabled;
             cefBrowserSettings.JavaScriptDomPaste = CefState.Disabled;
             cefBrowserSettings.JavaScript = CefState.Enabled;
+            
 
 
             // CefRuntime.RunMessageLoop();
 
-            
+
             System.Console.WriteLine("Before new DemoClient");
             
 
@@ -125,8 +161,7 @@ namespace PdfGlue
             DemoCefClient cefClient = new DemoCefClient(1280, 720);
 
             System.Console.WriteLine("After new DemoClient");
-            
-            
+
             System.Console.WriteLine("Before CreateBrowser");
             // Start up the browser instance.
             CefBrowserHost.CreateBrowser(
