@@ -13,3 +13,15 @@
 ### License
 
 TODO
+
+
+
+
+
+###### cefglue\CefGlue.Interop.Gen
+
+cef_parser.py
+  * 'float*': ['float*', 'NULL'],
+
+schema_cef3.py
+  * 'CefAudioHandler': { 'role': ROLE_HANDLER },
