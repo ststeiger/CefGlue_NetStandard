@@ -36,6 +36,7 @@ namespace PdfGlue
             // Start the secondary CEF process.
             string[] argv = args;
 
+            // https://github.com/dotnet/coreclr/issues/23171
             if (CefRuntime.Platform != CefRuntimePlatform.Windows)
             {
                 argv = new string[args.Length + 1];
