@@ -15,7 +15,7 @@ namespace PdfGlue
             System.Console.WriteLine("Entering OnBeforeCommandLineProcessing");
 
             // https://simpleit.rocks/linux/ubuntu/fixing-common-google-chrome-gpu-process-error-message-in-linux/
-            // commandLine.AppendSwitch("headless");
+            commandLine.AppendSwitch("headless");
             commandLine.AppendSwitch("no-sandbox");
             commandLine.AppendSwitch("disable-software-rasterizer");
 

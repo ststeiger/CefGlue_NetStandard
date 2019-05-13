@@ -161,15 +161,15 @@ namespace PdfGlue
 
 
             cefBrowserSettings.WebGL = CefState.Disabled;
-            cefBrowserSettings.WindowlessFrameRate = 30;
-            /*
+            cefBrowserSettings.WindowlessFrameRate = 1;
             cefBrowserSettings.Plugins = CefState.Disabled;
             cefBrowserSettings.DefaultEncoding = System.Text.Encoding.UTF8.WebName;
             cefBrowserSettings.JavaScriptCloseWindows = CefState.Disabled;
             cefBrowserSettings.JavaScriptAccessClipboard = CefState.Disabled;
             cefBrowserSettings.JavaScriptDomPaste = CefState.Disabled;
             cefBrowserSettings.JavaScript = CefState.Enabled;
-            */
+            
+
 
 
             // CefRuntime.RunMessageLoop();
