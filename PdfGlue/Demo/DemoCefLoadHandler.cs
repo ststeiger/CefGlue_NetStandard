@@ -63,6 +63,27 @@ namespace PdfGlue
 
                 // browser.GetHost().HasDevTools
                 // browser.GetHost().DownloadImage("imageUrl", false, 1000, true, new foo());
+
+
+                // frame.LoadString()
+
+
+                //frame.GetSource()
+
+                // browser.GetHost().DownloadImage("", true, 1024, true, null);
+
+                //browser.GetHost().
+
+
+
+                // browser.GetHost().DownloadImage
+
+
+                // browser.GetMainFrame().
+
+                // browser.GetHost().PrintToPdf("path", null, null);
+
+
                 System.Console.WriteLine("END: {0}, {1}", browser.GetMainFrame().Url, httpStatusCode);
             } // End if (frame.IsMain) 
             
