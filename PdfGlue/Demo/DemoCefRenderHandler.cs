@@ -61,6 +61,10 @@ namespace PdfGlue
 
         bool isPainting = false;
 
+        
+
+
+
         protected override void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects
             , System.IntPtr buffer, int width, int height)
         {

@@ -171,7 +171,6 @@ namespace PdfGlue
                 "http://www.reddit.com/");
             System.Console.WriteLine("After CreateBrowser");
 
-
             // Hang, to let the browser to do its work.
             System.Console.WriteLine(System.Environment.NewLine);
             System.Console.WriteLine(" --- Press a key at any time to end the program. --- ");
