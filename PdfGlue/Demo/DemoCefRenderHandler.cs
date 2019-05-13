@@ -17,7 +17,8 @@ namespace PdfGlue
             _windowWidth = windowWidth;
             _windowHeight = windowHeight;
         } // End Constructor 
-        
+
+
 
         protected override bool GetRootScreenRect(CefBrowser browser, ref CefRectangle rect)
         {
@@ -33,6 +34,12 @@ namespace PdfGlue
         } // End Function GetScreenPoint 
 
 
+
+
+
+
+
+
         protected bool GetViewRectImpl(CefBrowser browser, ref CefRectangle rect)
         {
             rect.X = 0;
@@ -42,7 +49,6 @@ namespace PdfGlue
 
             return true;
         } // End Function GetViewRectImpl 
-
 
         protected override void GetViewRect(CefBrowser browser, out CefRectangle rect)
         {
@@ -58,7 +64,6 @@ namespace PdfGlue
             return false;
         } // End Function GetScreenInfo 
 
-
         bool isPainting = false;
 
         
@@ -68,14 +73,19 @@ namespace PdfGlue
         protected override void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects
             , System.IntPtr buffer, int width, int height)
         {
-            if (isPainting == true)
-                return;
+            // if (isPainting == true) return;
 
             isPainting = true;
 
             // Save the provided buffer (a bitmap image) as a PNG.
             using (System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(width, height, width * 4, System.Drawing.Imaging.PixelFormat.Format32bppRgb, buffer))
             {
+                System.Console.WriteLine("PixelFormat: " + bitmap.PixelFormat);
+                System.Console.WriteLine("HorizontalResolution: " + bitmap.HorizontalResolution);
+                System.Console.WriteLine("VerticalResolution: " + bitmap.VerticalResolution);
+
+                bitmap.Save("LastOnPaint.bmp");
+
                 bitmap.Save(@"LastOnPaint.png", System.Drawing.Imaging.ImageFormat.Png);
             } // End Using bitmap 
 

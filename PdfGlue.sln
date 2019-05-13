@@ -13,9 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefGlue_DotNet45", "CefGlue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefGlue_DotNet2", "CefGlue_DotNet2\CefGlue_DotNet2.csproj", "{60727C5B-ECA7-425B-BF01-378F1B901547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefGlue_NetStandard2", "CefGlue_NetStandard2\CefGlue_NetStandard2.csproj", "{BDEBB532-EB45-414D-8AA0-B67E226269B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CefGlue_NetStandard2", "CefGlue_NetStandard2\CefGlue_NetStandard2.csproj", "{BDEBB532-EB45-414D-8AA0-B67E226269B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfGlue_DotNet2", "PdfGlue_DotNet2\PdfGlue_DotNet2.csproj", "{26FC9BF3-0A96-4E2D-AA77-1B1F24314E59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD3D93A1-F8FE-4B2D-A2D5-01A3F2C3DBF5}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

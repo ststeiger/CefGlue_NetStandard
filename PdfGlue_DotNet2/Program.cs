@@ -34,7 +34,17 @@ namespace PdfGlue
             CefRuntime.Load();
 
             // Start the secondary CEF process.
-            CefMainArgs cefMainArgs = new CefMainArgs(new string[0]);
+            string[] argv = args;
+
+            // https://github.com/dotnet/coreclr/issues/23171
+            if (CefRuntime.Platform != CefRuntimePlatform.Windows)
+            {
+                argv = new string[args.Length + 1];
+                System.Array.Copy(args, 0, argv, 1, args.Length);
+                argv[0] = "-";
+            }
+
+            CefMainArgs cefMainArgs = new CefMainArgs(argv);
             DemoCefApp cefApp = new DemoCefApp();
 
 
