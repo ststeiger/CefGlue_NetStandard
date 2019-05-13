@@ -84,6 +84,10 @@ namespace PdfGlue
 
             isPainting = true;
 
+            string savePath = "";
+            // if (System.Environment.OSVersion.Platform == System.PlatformID.Unix) savePath = "/opt/pdfglue/";
+
+
             // Save the provided buffer (a bitmap image) as a PNG.
             using (System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(width, height, width * 4, System.Drawing.Imaging.PixelFormat.Format32bppRgb, buffer))
             {
@@ -91,9 +95,8 @@ namespace PdfGlue
                 System.Console.WriteLine("HorizontalResolution: " + bitmap.HorizontalResolution);
                 System.Console.WriteLine("VerticalResolution: " + bitmap.VerticalResolution);
 
-                bitmap.Save("/opt/pdfglue/LastOnPaint.bmp");
-
-                bitmap.Save(@"/opt/pdfglue/LastOnPaint.png", System.Drawing.Imaging.ImageFormat.Png);
+                bitmap.Save(savePath + "LastOnPaint.bmp");
+                bitmap.Save(savePath + "LastOnPaint.png", System.Drawing.Imaging.ImageFormat.Png);
             } // End Using bitmap 
 
 
@@ -122,7 +125,7 @@ namespace PdfGlue
 
             CefPdfPrintSettings ps = new PageSize(PageSize_t.A4).PrintSettings;
 
-            browser.GetHost().PrintToPdf("/opt/pdfglue/AAA.pdf", ps, new PdfPrintCallback());
+            browser.GetHost().PrintToPdf(savePath + "AAA.pdf", ps, new PdfPrintCallback());
             // browser.GetHost().CloseBrowser();
             // browser.Dispose(); // We have the image - stop re-rendering
             

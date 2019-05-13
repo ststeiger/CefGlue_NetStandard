@@ -13,12 +13,12 @@ namespace PdfGlue
         protected override void OnBeforeCommandLineProcessing(string processType, CefCommandLine commandLine)
         {
             System.Console.WriteLine("Entering OnBeforeCommandLineProcessing");
-            
+
             // https://simpleit.rocks/linux/ubuntu/fixing-common-google-chrome-gpu-process-error-message-in-linux/
-            commandLine.AppendSwitch("headless");
-            commandLine.AppendSwitch("no-sandbox");
-            commandLine.AppendSwitch("disable-software-rasterizer");
-            
+            // commandLine.AppendSwitch("headless");
+            // commandLine.AppendSwitch("no-sandbox");
+            // commandLine.AppendSwitch("disable-software-rasterizer");
+
             commandLine.AppendSwitch("disable-gpu");
             commandLine.AppendSwitch("disable-gpu-compositing");
 
@@ -29,6 +29,7 @@ namespace PdfGlue
             base.OnBeforeCommandLineProcessing(processType, commandLine);
             System.Console.WriteLine("Exiting  OnBeforeCommandLineProcessing");
         }
+
 
         protected override void OnRegisterCustomSchemes(CefSchemeRegistrar registrar)
         {
