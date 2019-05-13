@@ -28,6 +28,9 @@ namespace PdfGlue
                 Application.Run(new Form1());
 #endif
 
+            int bitness = System.IntPtr.Size * 8;
+            System.Console.WriteLine($"Running as {bitness}-Bit application");
+
             // CefFiles.Cleanup(); return;
 
             // Load CEF. This checks for the correct CEF version.
@@ -55,20 +58,20 @@ namespace PdfGlue
                 System.Console.Error.WriteLine("Could not the secondary process.");
             }
 
-            // Settings for all of CEF (e.g. process management and control).
+
             CefSettings cefSettings = new CefSettings
             {
-                //  From v68 SingleProcess is no longer supported and it has to be published. 
+                // From v68 SingleProcess is no longer supported and it has to be published. 
                 // So debugging may be a tough situation in that regard unless your had a subprocess. 
                 // SingleProcess = false, // https://github.com/chromelyapps/Chromely/issues/74 
-                MultiThreadedMessageLoop = true
-                ,
-                NoSandbox = true
-                ,
-                WindowlessRenderingEnabled = true
-                ,
-                IgnoreCertificateErrors = true
+                MultiThreadedMessageLoop = true,
+                NoSandbox = true,
+                WindowlessRenderingEnabled = true,
+                IgnoreCertificateErrors = true,
+                CommandLineArgsDisabled = true,
+                LogSeverity = CefLogSeverity.Verbose,
             };
+
 
             // Start the browser process (a child process).
             // runtime files to /usr/share/dotnet
@@ -85,7 +88,6 @@ namespace PdfGlue
 
             // Settings for the browser window itself (e.g. enable JavaScript?).
             CefBrowserSettings cefBrowserSettings = new CefBrowserSettings();
-
 
             cefBrowserSettings.WebGL = CefState.Disabled;
             cefBrowserSettings.WindowlessFrameRate = 30;
