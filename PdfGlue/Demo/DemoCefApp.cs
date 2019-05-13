@@ -17,6 +17,7 @@ namespace PdfGlue
             // https://simpleit.rocks/linux/ubuntu/fixing-common-google-chrome-gpu-process-error-message-in-linux/
             commandLine.AppendSwitch("headless");
             commandLine.AppendSwitch("no-sandbox");
+            commandLine.AppendSwitch("single-process");
             commandLine.AppendSwitch("disable-software-rasterizer");
 
             commandLine.AppendSwitch("disable-gpu");
