@@ -123,16 +123,18 @@ namespace PdfGlue
 
                 string data = null;
                 string sourceLocation = "../../../source.htm";
-
-                if (false)
+                
+                if (true)
                 {
                     // http://opensource.spotify.com/cefbuilds/index.html
                     data = this.DownloadString(this.Canonical + "index.html");
+                    sourceLocation = "source.htm";
                     System.IO.File.WriteAllText(sourceLocation, data, System.Text.Encoding.UTF8);
                 }
-                else
-                    data = System.IO.File.ReadAllText(sourceLocation, System.Text.Encoding.UTF8);
-
+                
+                data = System.IO.File.ReadAllText(sourceLocation, System.Text.Encoding.UTF8);
+                
+                
                 HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
 
                 doc.OptionCheckSyntax = true;

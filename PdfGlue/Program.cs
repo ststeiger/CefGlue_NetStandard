@@ -22,7 +22,11 @@ namespace PdfGlue
         // https://github.com/spajak/cef-pdf
         // https://bitbucket.org/chromiumembedded/cef/wiki/GeneralUsage#markdown-header-off-screen-rendering
         // http://blog.icnet.eu/loadhtml-in-cefsharp3/
-
+        
+        
+        // dotnet restore -r linux-x64
+        // dotnet build -r linux-x64
+        // dotnet publish -f netcoreapp2.2 -c Release -r linux-x64
         [System.STAThread]
         internal static void Main(string[] args)
         {
@@ -62,6 +66,8 @@ namespace PdfGlue
 
 
             // CefFiles.DownloadCefForPlatform(@"D:\inetpub\mycef");
+            // CefFiles.DownloadCefForPlatform(@"/root/Downloads/CEF/download.tar.bz2");
+            
 
 
             // CefFiles.Cleanup(); return;
@@ -112,12 +118,16 @@ namespace PdfGlue
                 // From v68 SingleProcess is no longer supported and it has to be published. 
                 // So debugging may be a tough situation in that regard unless your had a subprocess. 
                 // SingleProcess = false, // https://github.com/chromelyapps/Chromely/issues/74 
-                 MultiThreadedMessageLoop = true
-                ,NoSandbox=true 
-                ,WindowlessRenderingEnabled = true
-                ,IgnoreCertificateErrors= true
-                ,CommandLineArgsDisabled= true
+                 MultiThreadedMessageLoop = CefRuntime.Platform == CefRuntimePlatform.Windows
                 ,LogSeverity = CefLogSeverity.Verbose
+                ,LogFile = "cef.log"
+                ,ResourcesDirPath = System.IO.Path.GetDirectoryName(new System.Uri(System.Reflection.Assembly.GetEntryAssembly().CodeBase).LocalPath)
+                ,RemoteDebuggingPort = 20480
+                ,WindowlessRenderingEnabled = true
+                ,NoSandbox = true 
+                ,IgnoreCertificateErrors = true
+                // ,CommandLineArgsDisabled= true
+                
                 , 
             };            
             System.Console.WriteLine("After new CEF-settings");
@@ -159,34 +169,38 @@ namespace PdfGlue
             cefBrowserSettings.JavaScriptDomPaste = CefState.Disabled;
             cefBrowserSettings.JavaScript = CefState.Enabled;
             
-
-
+            
+            
             // CefRuntime.RunMessageLoop();
-
-
+            
+            
             System.Console.WriteLine("Before new DemoClient");
             
-
+            
             // Initialize some the cust interactions with the browser process.
             // The browser window will be 1280 x 720 (pixels).
             DemoCefClient cefClient = new DemoCefClient(1280, 720);
-
+            
             System.Console.WriteLine("After new DemoClient");
-
+            
             System.Console.WriteLine("Before CreateBrowser");
             // Start up the browser instance.
             CefBrowserHost.CreateBrowser(
                 cefWindowInfo,
                 cefClient,
                 cefBrowserSettings,
-                "http://www.reddit.com/");
+                // "https://www.microsoft.com/de-CH"
+                "https://google.com"
+            );
+            
             System.Console.WriteLine("After CreateBrowser");
-
+            
+            
             // Hang, to let the browser to do its work.
             System.Console.WriteLine(System.Environment.NewLine);
             System.Console.WriteLine(" --- Press a key at any time to end the program. --- ");
             System.Console.ReadKey();
-
+            
             
             System.Console.WriteLine("Before CefShutdown");
             
@@ -194,9 +208,9 @@ namespace PdfGlue
             CefRuntime.Shutdown();
             System.Console.WriteLine("After CefShutdown");
         } // End Sub Main 
-
-
+        
+        
     } // End Class Program 
-
-
+    
+    
 } // End Namespace PdfGlue 

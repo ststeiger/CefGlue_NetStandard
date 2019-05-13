@@ -13,6 +13,8 @@ namespace PdfGlue
 
         protected override void OnLoadStart(CefBrowser browser, CefFrame frame, CefTransitionType transitionType)
         {
+            System.Console.WriteLine("Entering OnLoadStart");
+            
             // base.OnLoadStart(browser, frame, transitionType);
 
             // A single CefBrowser instance can handle multiple requests
@@ -21,7 +23,9 @@ namespace PdfGlue
             {
                 System.Console.WriteLine("START: {0}", browser.GetMainFrame().Url);
             } // End if (frame.IsMain) 
-
+            
+            
+            System.Console.WriteLine("Exiting OnLoadStart");
         } // End Sub OnLoadStart 
 
 
@@ -31,16 +35,22 @@ namespace PdfGlue
         {
             protected override void OnDownloadImageFinished(string imageUrl, int httpStatusCode, CefImage image)
             {
+                System.Console.WriteLine("Entering OnDownloadImageFinished");
+                
                 int width;
                 int height;
                 CefBinaryValue cbv = image.GetAsPng(1, true, out width, out height);
                 byte[] ba = cbv.ToArray();
+                
+                System.Console.WriteLine("Exiting OnDownloadImageFinished");
             }
         }
 
 
         protected override void OnLoadEnd(CefBrowser browser, CefFrame frame, int httpStatusCode)
         {
+            System.Console.WriteLine("Entering OnLoadEnd");
+            
             if (frame.IsMain)
             {
                 // https://bitbucket.org/chromiumembedded/cef/wiki/GeneralUsage#markdown-header-off-screen-rendering
@@ -76,7 +86,8 @@ namespace PdfGlue
 
                 System.Console.WriteLine("END: {0}, {1}", browser.GetMainFrame().Url, httpStatusCode);
             } // End if (frame.IsMain) 
-
+            
+            System.Console.WriteLine("Exiting OnLoadEnd");
         } // End Sub OnLoadEnd 
 
 
