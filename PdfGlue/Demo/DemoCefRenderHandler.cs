@@ -22,26 +22,27 @@ namespace PdfGlue
 
         protected override bool GetRootScreenRect(CefBrowser browser, ref CefRectangle rect)
         {
+            System.Console.WriteLine("GetRootScreenRect");
+            
             return GetViewRectImpl(browser, ref rect);
         } // End Function GetRootScreenRect 
 
 
         protected override bool GetScreenPoint(CefBrowser browser, int viewX, int viewY, ref int screenX, ref int screenY)
         {
+            System.Console.WriteLine("GetScreenPoint");
+            
             screenX = viewX;
             screenY = viewY;
             return true;
         } // End Function GetScreenPoint 
-
-
-
-
-
-
-
-
+        
+        
+        
         protected bool GetViewRectImpl(CefBrowser browser, ref CefRectangle rect)
         {
+            System.Console.WriteLine("GetViewRectImpl");
+            
             rect.X = 0;
             rect.Y = 0;
             rect.Width = _windowWidth;
@@ -52,6 +53,8 @@ namespace PdfGlue
 
         protected override void GetViewRect(CefBrowser browser, out CefRectangle rect)
         {
+            System.Console.WriteLine("GetViewRect");
+            
             rect = new CefRectangle();
             GetViewRectImpl(browser, ref rect);
 
@@ -61,6 +64,8 @@ namespace PdfGlue
 
         protected override bool GetScreenInfo(CefBrowser browser, CefScreenInfo screenInfo)
         {
+            System.Console.WriteLine("GetScreenInfo");
+            
             return false;
         } // End Function GetScreenInfo 
 
@@ -69,6 +74,8 @@ namespace PdfGlue
         protected override void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects
             , System.IntPtr buffer, int width, int height)
         {
+            System.Console.WriteLine("Entering OnPaint");
+            
             // if (isPainting == true) return;
 
             isPainting = true;
@@ -80,9 +87,9 @@ namespace PdfGlue
                 System.Console.WriteLine("HorizontalResolution: " + bitmap.HorizontalResolution);
                 System.Console.WriteLine("VerticalResolution: " + bitmap.VerticalResolution);
 
-                bitmap.Save("LastOnPaint.bmp");
+                bitmap.Save("/opt/pdfglue/LastOnPaint.bmp");
 
-                bitmap.Save(@"LastOnPaint.png", System.Drawing.Imaging.ImageFormat.Png);
+                bitmap.Save(@"/opt/pdfglue/LastOnPaint.png", System.Drawing.Imaging.ImageFormat.Png);
             } // End Using bitmap 
 
 
@@ -111,9 +118,11 @@ namespace PdfGlue
 
             CefPdfPrintSettings ps = new PageSize(PageSize_t.A4).PrintSettings;
 
-            browser.GetHost().PrintToPdf("AAA.pdf", ps, new PdfPrintCallback());
+            browser.GetHost().PrintToPdf("/opt/pdfglue/AAA.pdf", ps, new PdfPrintCallback());
             // browser.GetHost().CloseBrowser();
             // browser.Dispose(); // We have the image - stop re-rendering
+            
+            System.Console.WriteLine("Exiting OnPaint");
         } // End Sub OnPaint 
 
 
